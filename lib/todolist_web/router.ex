@@ -19,6 +19,18 @@ defmodule TodolistWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", TodolistWeb do
+    pipe_through :api
+
+    get "/tasks", TaskController, :index
+    get "/tasks/:id", TaskController, :show
+    post "/tasks", TaskController, :create
+    put "/tasks/:id", TaskController, :update
+    delete "/tasks/:id", TaskController, :delete
+
+
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", TodolistWeb do
   #   pipe_through :api
